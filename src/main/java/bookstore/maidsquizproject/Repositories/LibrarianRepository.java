@@ -1,5 +1,6 @@
 package bookstore.maidsquizproject.Repositories;
 
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,7 +39,12 @@ public class LibrarianRepository extends JdbcDaoSupport
 
 	public void LibrarianUpdate(Librarian librarian)
 	{
-		jdbcTemplate.query(this.LibrarianUpdate, new LibrarianRowMapper(), librarian.Id, librarian.UserName, librarian.UserPassword);
+		jdbcTemplate.query(this.LibrarianUpdate, (ResultSetExtractor<Void>) _ -> null, librarian.Id, librarian.UserName, librarian.UserPassword);
+	}
+
+	public void LibrarianInsert(Librarian librarian)
+	{
+		jdbcTemplate.query(this.LibrarianInsert, (ResultSetExtractor<Void>) _ -> null, librarian.UserName, librarian.UserPassword);
 	}
 
 	public Librarian LibrarianGetByUserName(String UserName)
@@ -67,7 +73,7 @@ public class LibrarianRepository extends JdbcDaoSupport
 
 	private final String LibrarianUpdate = "call BookStore.LibrarianUpdate(?, ?, ?);";
 
-	private final String LibrarianInsert = "call BookStore.LibrarianInsert(?, ?, ?, ?);";
+	private final String LibrarianInsert = "call BookStore.LibrarianInsert(?, ?, @dummy);";
 
 	private final String LibrarianGetByUsername = "call BookStore.LibrarianGetByUserName(?);";
 

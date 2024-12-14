@@ -28,4 +28,10 @@ public class LibrarianServices implements UserDetailsService
 		Librarian librarian = librarianRepository.LibrarianGetByUserName(username);
 		return User.builder().username(librarian.UserName).password(librarian.UserPassword).build();
 	}
+
+	public void LibrarianInsert(Librarian Librarian)
+	{
+		librarianRepository.LibrarianInsert(Librarian);
+	}
+
 }

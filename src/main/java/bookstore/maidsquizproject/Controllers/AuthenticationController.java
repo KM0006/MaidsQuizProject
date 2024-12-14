@@ -1,5 +1,6 @@
 package bookstore.maidsquizproject.Controllers;
 
+import bookstore.maidsquizproject.Services.LibrarianServices;
 import org.springframework.web.bind.annotation.*;
 import bookstore.maidsquizproject.Models.Librarian;
 import bookstore.maidsquizproject.Models.ApiResponse;
@@ -11,11 +12,14 @@ import bookstore.maidsquizproject.DataTransferObjects.LibrarianDto;
 public class AuthenticationController
 {
 
+	LibrarianServices LibrarianServices;
+
 	JwtServices jwtServices;
 
 	@Autowired
-	public AuthenticationController(JwtServices jwtServices)
+	public AuthenticationController(JwtServices jwtServices, LibrarianServices LibrarianServices)
 	{
+		this.LibrarianServices = LibrarianServices;
 		this.jwtServices = jwtServices;
 	}
 
@@ -24,5 +28,13 @@ public class AuthenticationController
 	{
 		return new ApiResponse<>(jwtServices.GenerateToken(new Librarian(librarianDto)));
 	}
+
+	@PostMapping("/Register")
+	public ApiResponse<String> Register(@RequestBody LibrarianDto librarianDto)
+	{
+
+		return new ApiResponse<>("Librarian Added Successfully");
+	}
+
 
 }
