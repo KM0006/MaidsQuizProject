@@ -63,7 +63,7 @@ public class BookController
 		return new ApiResponse<>("Book Updated successfully");
 	}
 
-	@PostMapping("/deleteBook/{Id}")
+	@GetMapping("/deleteBook/{Id}")
 	public ApiResponse<String> deleteBook(@PathVariable int Id)
 	{
 		bookServices.BookDelete(Id);
