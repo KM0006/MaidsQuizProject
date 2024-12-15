@@ -25,20 +25,20 @@ public class AuthorController
 	}
 
 	@GetMapping("/getAllAuthors")
-	public ApiResponse<List<Author>> AuthorList()
+	public ApiResponse<List<Author>> getAllAuthors()
 	{
 		return new ApiResponse<>(authorService.AuthorList());
 	}
 
 	@PostMapping("/addAuthor")
-	public ApiResponse<String> AuthorInsert(@RequestBody AuthorDto authorDto)
+	public ApiResponse<String> addAuthor(@RequestBody AuthorDto authorDto)
 	{
 		authorService.AuthorInsert(new Author(authorDto));
 		return new ApiResponse<>("Author Added Successfully");
 	}
 
 	@PostMapping("/updateAuthor")
-	public ApiResponse<String> AuthorUpdate(@RequestBody Author author)
+	public ApiResponse<String> updateAuthor(@RequestBody Author author)
 	{
 		authorService.AuthorUpdate(author);
 		return new ApiResponse<>("Author Updated Successfully");
