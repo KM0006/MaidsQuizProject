@@ -37,6 +37,18 @@ public class BookController
 		return new ApiResponse<>(bookServices.BookActiveList());
 	}
 
+	@GetMapping("/getAvailableBooks")
+	public ApiResponse<List<Book>> getAvailableBooks()
+	{
+		return new ApiResponse<>(bookServices.BookAvailableList());
+	}
+
+	@GetMapping("/getBorrowedBooks")
+	public ApiResponse<List<Book>> getBorrowedBooks()
+	{
+		return new ApiResponse<>(bookServices.BookBorrowedList());
+	}
+
 	@GetMapping("/getBook/{Id}")
 	public ApiResponse<Book> getBookById(@PathVariable int Id)
 	{
