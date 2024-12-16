@@ -2,6 +2,7 @@ package bookstore.maidsquizproject.Services;
 
 import java.util.List;
 
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import bookstore.maidsquizproject.Models.Book;
 import bookstore.maidsquizproject.Repositories.BookRepository;
@@ -29,15 +30,41 @@ public class BookServices
 		return bookRepository.BookActiveList();
 	}
 
+	public List<Book> BookAvailableList()
+	{
+		return bookRepository.BookAvailableList();
+	}
+
+	public List<Book> BookBorrowedList()
+	{
+		return bookRepository.BookBorrowedList();
+	}
 
 	public Book BookGetById(int Id)
 	{
-		return bookRepository.BookGetById(Id);
+
+		Book book = bookRepository.BookGetById(Id);
+
+		if (book == null)
+		{
+			throw new ResourceNotFoundException();
+		}
+		return book;
+
 	}
 
 	public Book BookGetByIsbn10(String Isbn10)
 	{
-		return bookRepository.BookGetByIsbn10(Isbn10);
+
+		Book book = bookRepository.BookGetByIsbn10(Isbn10);
+
+		if (book == null)
+		{
+			throw new ResourceNotFoundException();
+		}
+
+		return book;
+
 	}
 
 	public void BookInsert(Book book)
