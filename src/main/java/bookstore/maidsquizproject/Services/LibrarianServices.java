@@ -16,10 +16,13 @@ public class LibrarianServices implements UserDetailsService
 
 	private final LibrarianRepository librarianRepository;
 
+	private final JwtServices jwtServices;
+
 	@Autowired
-	public LibrarianServices(LibrarianRepository librarianRepository)
+	public LibrarianServices(LibrarianRepository librarianRepository, JwtServices jwtServices)
 	{
 		this.librarianRepository = librarianRepository;
+		this.jwtServices = jwtServices;
 	}
 
 	@Override
@@ -29,9 +32,23 @@ public class LibrarianServices implements UserDetailsService
 		return User.builder().username(librarian.UserName).password(librarian.UserPassword).build();
 	}
 
+	public Librarian LibrarianGetByUserName(String username)
+	{
+		return librarianRepository.LibrarianGetByUserName(username);
+	}
+
 	public void LibrarianInsert(Librarian Librarian)
 	{
 		librarianRepository.LibrarianInsert(Librarian);
+	}
+
+	public Librarian LibrarianGetByBearerToken(String Token)
+	{
+
+		String UserName = jwtServices.ExtractUsername(Token);
+
+		return this.LibrarianGetByUserName(UserName);
+
 	}
 
 }
