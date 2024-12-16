@@ -1,10 +1,14 @@
 package bookstore.maidsquizproject.Services;
 
+import bookstore.maidsquizproject.Exceptions.SqlConstraintCheckViolationException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import bookstore.maidsquizproject.Models.Patron;
 import bookstore.maidsquizproject.Repositories.PatronRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -31,12 +35,25 @@ public class PatronServices
 
 	public Patron PatronGetById(int Id)
 	{
-		return patronRepository.PatronGetById(Id);
+		Patron patron = patronRepository.PatronGetById(Id);
+		if (patron == null)
+		{
+			throw new ResourceNotFoundException();
+		}
+		return patron;
 	}
 
-	public void PatronInsert(Patron patron)
+	public void PatronInsert(Patron patron) throws SqlConstraintCheckViolationException
 	{
-		patronRepository.PatronInsert(patron);
+		try
+		{
+			patronRepository.PatronInsert(patron);
+		}
+		catch (DataAccessException dataAccessException)
+		{
+			throw new SqlConstraintCheckViolationException("Invalid Input data, check for typos, email formats and phone formats.");
+		}
+
 	}
 
 	public void PatronUpdate(Patron patron)
