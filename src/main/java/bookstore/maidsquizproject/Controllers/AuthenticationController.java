@@ -29,12 +29,4 @@ public class AuthenticationController
 		return new ApiResponse<>(jwtServices.GenerateToken(new Librarian(librarianDto)));
 	}
 
-	@PostMapping("/Register")
-	public ApiResponse<String> Register(@RequestBody LibrarianDto librarianDto)
-	{
-
-		return new ApiResponse<>("Librarian Added Successfully");
-	}
-
-
 }
