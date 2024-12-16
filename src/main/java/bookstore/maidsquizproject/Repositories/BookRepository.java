@@ -47,6 +47,16 @@ public class BookRepository extends JdbcDaoSupport
 		return jdbcTemplate.query(this.BookActiveList, new BookRowMapper());
 	}
 
+	public List<Book> BookAvailableList()
+	{
+		return jdbcTemplate.query(this.BookAvailableList, new BookRowMapper());
+	}
+
+	public List<Book> BookBorrowedList()
+	{
+		return jdbcTemplate.query(this.BookBorrowedList, new BookRowMapper());
+	}
+
 	public void BookInsert(Book book)
 	{
 		jdbcTemplate.query(this.BookInsert, (ResultSetExtractor<Void>) _ -> null, book.Title, book.Isbn10, book.PublicationDate);
@@ -87,6 +97,10 @@ public class BookRepository extends JdbcDaoSupport
 	private final String BookList = "call BookStore.BookList();";
 
 	private final String BookActiveList = "call BookStore.BookActiveList();";
+
+	private final String BookAvailableList = "call BookStore.BookAvailableList();";
+
+	private final String BookBorrowedList = "call BookStore.BookBorrowedList();";
 
 	private final String BookInsert = "call BookStore.BookInsert(?, ?, ?, @dummy);";
 
