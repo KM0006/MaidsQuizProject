@@ -1,0 +1,757 @@
+{
+	"info": {
+		"_postman_id": "325d2278-49b2-482d-acee-a954519c7633",
+		"name": "MaidsQuizProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27203025"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserName\": \"Adele\",\r\n    \"UserPassword\": \"ADIDAS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/login",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "BookGetById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getBook/1",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getBook",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookInsert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Title\": \"Harry Potter 5\",\r\n    \"Isbn10\": \"5555555555\",\r\n    \"PublicationDate\": \"2020-09-12\",\r\n    \"IsActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/addBook",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"addBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookUpdate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 7,\r\n    \"IsActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/updateBook",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"updateBook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getAllBooks",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getAllBooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookActiveList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getActiveBooks",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getActiveBooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookGetByIsbn10",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getBookByIsbn/Isbn=9999999999",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getBookByIsbn",
+								"Isbn=9999999999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookDelete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/deleteBook/1",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"deleteBook",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookAvailableList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getAvailableBooks",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getAvailableBooks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patron",
+			"item": [
+				{
+					"name": "PatronInsert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"Rami\",\r\n    \"LastName\": \"Malek\",\r\n    \"Email\": \"RM@gmail.com\",\r\n    \"PhoneNumber\": \"+96369965325\",\r\n    \"IsActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/addPatron",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"addPatron"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatronUpdate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/updatePatron",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"updatePatron"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatronList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getAllPatrons",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getAllPatrons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatronActiveList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getActivePatrons",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getActivePatrons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatronDelete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/deletePatron/3",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"deletePatron",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatronGetByID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getPatron/7",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getPatron",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "AuthorList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getAllAuthors",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getAllAuthors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuthorUpdate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 2,\r\n    \"FirstName\": \"Samios\",\r\n    \"LastName\": \"Simios\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/updateAuthor",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"updateAuthor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuthorInsert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"Simios\",\r\n    \"LastName\": \"Samios\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/addAuthor",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"addAuthor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookAuthor",
+			"item": [
+				{
+					"name": "BookAuthorGetBookListByAuthor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getAuthorBooks/1",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getAuthorBooks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookAuthorInsert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Book\": 2,\r\n    \"Author\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/addBookAuthor",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"addBookAuthor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookAuthorGetAuthorListByBook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/getBookAuthors/2",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"getBookAuthors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookBorrowing",
+			"item": [
+				{
+					"name": "BookBorrowingInsert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Book\": 5,\r\n    \"Patron\": 1,\r\n    \"BorrowingDate\": \"2021-09-09\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SiteUrl}}/addBookBorrowing",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"addBookBorrowing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BookReturningInsert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{SiteUrl}}/addBookReturning/5/patron/1",
+							"host": [
+								"{{SiteUrl}}"
+							],
+							"path": [
+								"addBookReturning",
+								"5",
+								"patron",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "JwtToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "SiteUrl",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
