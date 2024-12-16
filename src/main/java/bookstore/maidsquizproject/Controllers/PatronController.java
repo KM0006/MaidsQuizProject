@@ -1,5 +1,6 @@
 package bookstore.maidsquizproject.Controllers;
 
+import bookstore.maidsquizproject.Exceptions.SqlConstraintCheckViolationException;
 import org.springframework.web.bind.annotation.*;
 import bookstore.maidsquizproject.Models.Patron;
 import bookstore.maidsquizproject.Models.ApiResponse;
@@ -39,7 +40,7 @@ public class PatronController
 	}
 
 	@PostMapping("/addPatron")
-	public ApiResponse<String> addPatron(@RequestBody PatronDto patronDto)
+	public ApiResponse<String> addPatron(@RequestBody PatronDto patronDto) throws SqlConstraintCheckViolationException
 	{
 		patronServices.PatronInsert(new Patron(patronDto));
 		return new ApiResponse<>("Patron Added successfully");
